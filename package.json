@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "@cocos/ammo": "^1.0.6",
-    "@cocos/cannon": "git+http://git.spsiot.cn/panziyang/cannon_js.git",
+    "@cocos/cannon": "git+https://github.com/dbcpp/cannon.js.git",
     "antd": "^4.4.3"
   }
 }
