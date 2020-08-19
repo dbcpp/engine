@@ -20,7 +20,7 @@ import rpProgress from 'rollup-plugin-progress';
 // @ts-ignore
 import rpVirtual from '@rollup/plugin-virtual';
 
-async function build (options: build.Options) {
+async function build(options: build.Options) {
     if (!options.moduleEntries || options.moduleEntries.length === 0) {
         console.debug(`No module entry specified, default module entries will be used.`);
         options.moduleEntries = await getDefaultModuleEntries(options.engine);
@@ -100,7 +100,7 @@ namespace build {
 
 export { build };
 
-function resolveModuleEntry (moduleEntry: string, engine: string) {
+function resolveModuleEntry(moduleEntry: string, engine: string) {
     return ps.normalize(ps.join(engine, 'exports', `${moduleEntry}.ts`));
 }
 
@@ -118,7 +118,7 @@ const moduleInfoTable: Record<string, {
     },
 };
 
-function _ensureUniqueModules (options: build.Options) {
+function _ensureUniqueModules(options: build.Options) {
     const uniqueModuleEntries: string[] = [];
     for (const moduleEntry of options.moduleEntries!) {
         if (uniqueModuleEntries.indexOf(moduleEntry) < 0) {
@@ -128,7 +128,7 @@ function _ensureUniqueModules (options: build.Options) {
     options.moduleEntries = uniqueModuleEntries;
 }
 
-async function _doBuild (options: build.Options & { buildTimeConstants: BuildTimeConstants; }) {
+async function _doBuild(options: build.Options & { buildTimeConstants: BuildTimeConstants; }) {
     console.debug(`Build-engine options: ${JSON.stringify(options, undefined, 2)}`);
     const doUglify = !!options.compress;
 
@@ -249,7 +249,7 @@ async function _doBuild (options: build.Options & { buildTimeConstants: BuildTim
         await fs.ensureDir(ps.dirname(incrementalFile));
         await fs.writeFile(incrementalFile, JSON.stringify(watchFiles, undefined, 2));
     }
-
+    console.warn(`开始构建-----`);
     await rollupBuild.write({
         format,
         sourcemap: options.sourceMap,
@@ -297,11 +297,11 @@ export enum Platform {
     COCOSPLAY,
 }
 
-export function enumeratePlatformReps () {
+export function enumeratePlatformReps() {
     return Object.values(Platform).filter((value) => typeof value === 'string') as Array<keyof typeof Platform>;
 }
 
-export function parsePlatform (rep: string) {
+export function parsePlatform(rep: string) {
     return Reflect.get(Platform, rep);
 }
 
@@ -313,11 +313,11 @@ export enum Mode {
     test,
 }
 
-export function enumerateBuildModeReps () {
+export function enumerateBuildModeReps() {
     return Object.values(Mode).filter((value) => typeof value === 'string') as Array<keyof typeof Mode>;
 }
 
-export function parseBuildMode (rep: string) {
+export function parseBuildMode(rep: string) {
     return Reflect.get(Mode, rep);
 }
 
@@ -327,11 +327,11 @@ export enum Physics {
     builtin,
 }
 
-export function enumeratePhysicsReps () {
+export function enumeratePhysicsReps() {
     return Object.values(Physics).filter((value) => typeof value === 'string');
 }
 
-export function parsePhysics (rep: string) {
+export function parsePhysics(rep: string) {
     return Reflect.get(Physics, rep);
 }
 
@@ -342,11 +342,11 @@ export enum ModuleOption {
     iife,
 }
 
-export function enumerateModuleOptionReps () {
+export function enumerateModuleOptionReps() {
     return Object.values(ModuleOption).filter((value) => typeof value === 'string') as Array<keyof typeof ModuleOption>;
 }
 
-export function parseModuleOption (rep: string) {
+export function parseModuleOption(rep: string) {
     return Reflect.get(ModuleOption, rep);
 }
 
@@ -397,7 +397,7 @@ interface BuildTimeConstants {
     CC_PHYSICS_BUILTIN?: boolean;
 }
 
-function populateBuildTimeConstants (options: build.Options) {
+function populateBuildTimeConstants(options: build.Options) {
     const buildMode = options.mode ?? Mode.universal;
     const platform = options.platform;
     const flags = options.flags;
@@ -411,7 +411,7 @@ function populateBuildTimeConstants (options: build.Options) {
         throw new Error(`Unknown build mode ${buildMode}.`);
     }
     const platformMacro = ('CC_' + Platform[platform!]).toUpperCase();
-    if ( PLATFORM_MACROS.indexOf(platformMacro) === -1) {
+    if (PLATFORM_MACROS.indexOf(platformMacro) === -1) {
         throw new Error(`Unknown platform ${platform}.`);
     }
     const result: BuildTimeConstants = {};
@@ -461,7 +461,7 @@ function populateBuildTimeConstants (options: build.Options) {
     return result;
 }
 
-async function getDefaultModuleEntries (engine: string) {
+async function getDefaultModuleEntries(engine: string) {
     type ModuleDivision = any; // import('../../scripts/module-division/tools/division-config').ModuleDivision;
     type GroupItem = any; // import('../../scripts/module-division/tools/division-config').GroupItem;
     type Item = any; // import('../../scripts/module-division/tools/division-config').Item;

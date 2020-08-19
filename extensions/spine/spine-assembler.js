@@ -279,7 +279,7 @@ var spineAssembler = {
                 graphics.stroke();
 
                 // Bone origins.
-                graphics.circle(bone.worldX, bone.worldY, Math.PI * 2);
+                graphics.circle(bone.worldX, bone.worldY, eMath.PI * 2);
                 graphics.fill();
                 if (i === 0) {
                     graphics.fillColor = _originColor;

@@ -5,6 +5,7 @@
 import { Mat4, Quat, random, randomRange, randomRangeInt, Vec2, Vec3 } from '../core/math';
 import { sign } from '../core/math/bits';
 import { Space } from './enum';
+import { eMath } from '../physics/cannon/cannon-eMath';
 
 export const particleEmitZAxis = new Vec3(0, 0, -1);
 
@@ -30,7 +31,7 @@ export function fixedAngleUnitVector2 (out: Vec2 | Vec3, theta: number) {
 }
 
 export function randomUnitVector2 (out: Vec2 | Vec3) {
-    const a = randomRange(0, 2 * Math.PI);
+    const a = randomRange(0, 2 * eMath.PI);
     const x = Math.cos(a);
     const y = Math.sin(a);
     Vec2.set(out, x, y);
@@ -38,7 +39,7 @@ export function randomUnitVector2 (out: Vec2 | Vec3) {
 
 export function randomUnitVector (out: Vec3) {
     const z = randomRange(-1, 1);
-    const a = randomRange(0, 2 * Math.PI);
+    const a = randomRange(0, 2 * eMath.PI);
     const r = Math.sqrt(1 - z * z);
     const x = r * Math.cos(a);
     const y = r * Math.sin(a);

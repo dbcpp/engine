@@ -33,6 +33,7 @@ import { Mat3 } from './mat3';
 import { IQuatLike, IVec3Like } from './type-define';
 import { EPSILON, toDegree } from './utils';
 import { Vec3 } from './vec3';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * 四元数。
@@ -92,7 +93,7 @@ export class Quat extends ValueType {
                 Vec3.cross(v3_1, Vec3.UNIT_Y, a);
             }
             Vec3.normalize(v3_1, v3_1);
-            Quat.fromAxisAngle(out, v3_1, Math.PI);
+            Quat.fromAxisAngle(out, v3_1, eMath.PI);
             return out;
         } else if (dot > 0.999999) {
             out.x = 0;
@@ -764,7 +765,7 @@ const qt_1 = new Quat();
 const qt_2 = new Quat();
 const v3_1 = new Vec3();
 const m3_1 = new Mat3();
-const halfToRad = 0.5 * Math.PI / 180.0;
+const halfToRad = 0.5 * eMath.PI / 180.0;
 
 CCClass.fastDefine('cc.Quat', Quat, { x: 0, y: 0, z: 0, w: 1 });
 cc.Quat = Quat;

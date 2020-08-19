@@ -35,6 +35,7 @@ import { IMat3Like, IMat4Like, IVec2Like } from './type-define';
 import { clamp } from './utils';
 import { EPSILON, random } from './utils';
 import { Vec3 } from './vec3';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * 二维向量。
@@ -295,7 +296,7 @@ export class Vec2 extends ValueType {
      */
     public static random <Out extends IVec2Like> (out: Out, scale?: number) {
         scale = scale || 1.0;
-        const r = random() * 2.0 * Math.PI;
+        const r = random() * 2.0 * eMath.PI;
         out.x = Math.cos(r) * scale;
         out.y = Math.sin(r) * scale;
         return out;
@@ -380,7 +381,7 @@ export class Vec2 extends ValueType {
             return 0;
         }
         if (cosine < -1.0) {
-            return Math.PI;
+            return eMath.PI;
         }
         return Math.acos(cosine);
     }

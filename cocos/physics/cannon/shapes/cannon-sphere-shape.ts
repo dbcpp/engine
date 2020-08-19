@@ -5,6 +5,7 @@ import { commitShapeUpdates } from '../cannon-util';
 import { CannonShape } from './cannon-shape';
 import { ISphereShape } from '../../spec/i-physics-shape';
 import { SphereColliderComponent } from '../../../../exports/physics-framework';
+import { eMath } from '../cannon-eMath';
 
 export class CannonSphereShape extends CannonShape implements ISphereShape {
 
@@ -18,7 +19,7 @@ export class CannonSphereShape extends CannonShape implements ISphereShape {
 
     setRadius (v: number) {
         const max = maxComponent(this.collider.node.worldScale);
-        this.impl.radius = v * Math.abs(max);
+        this.impl.radius = v * eMath.abs(max);
         this.impl.updateBoundingSphereRadius();
         if (this._index != -1) {
             commitShapeUpdates(this._body);

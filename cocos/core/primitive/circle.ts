@@ -4,6 +4,7 @@
 
 import { GFXPrimitiveMode } from '../gfx/define';
 import { applyDefaultGeometryOptions, IGeometry, IGeometryOptions } from './define';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * @en
@@ -45,7 +46,7 @@ export default function circle (options?: RecursivePartial<ICircleOptions> | ICi
     positions[2] = 0;
     const indices = new Array<number>(1 + segments * 2);
     indices[0] = 0;
-    const step = Math.PI * 2 / segments;
+    const step = eMath.PI * 2 / segments;
     for (let iSegment = 0; iSegment < segments; ++iSegment) {
         const angle = step * iSegment;
         const x = Math.cos(angle);

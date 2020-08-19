@@ -3,6 +3,8 @@
  * @category animation
  */
 
+import { eMath } from "../../physics/cannon/cannon-eMath";
+
 export function constant () {
     return 0;
 }
@@ -76,15 +78,15 @@ export function quintInOut (k: number) {
 }
 
 export function sineIn (k: number) {
-    return 1 - Math.cos(k * Math.PI / 2);
+    return 1 - Math.cos(k * eMath.PI / 2);
 }
 
 export function sineOut (k: number) {
-    return Math.sin(k * Math.PI / 2);
+    return Math.sin(k * eMath.PI / 2);
 }
 
 export function sineInOut (k: number) {
-    return 0.5 * (1 - Math.cos(Math.PI * k));
+    return 0.5 * (1 - Math.cos(eMath.PI * k));
 }
 
 export function expoIn (k: number) {
@@ -140,9 +142,9 @@ export function elasticIn (k: number) {
         s = p / 4;
     }
     else {
-        s = p * Math.asin(1 / a) / (2 * Math.PI);
+        s = p * Math.asin(1 / a) / (2 * eMath.PI);
     }
-    return -(a * Math.pow(2, 10 * (k -= 1)) * Math.sin((k - s) * (2 * Math.PI) / p));
+    return -(a * Math.pow(2, 10 * (k -= 1)) * Math.sin((k - s) * (2 * eMath.PI) / p));
 }
 
 export function elasticOut (k: number) {
@@ -160,9 +162,9 @@ export function elasticOut (k: number) {
         s = p / 4;
     }
     else {
-        s = p * Math.asin(1 / a) / (2 * Math.PI);
+        s = p * Math.asin(1 / a) / (2 * eMath.PI);
     }
-    return (a * Math.pow(2, -10 * k) * Math.sin((k - s) * (2 * Math.PI) / p) + 1);
+    return (a * Math.pow(2, -10 * k) * Math.sin((k - s) * (2 * eMath.PI) / p) + 1);
 }
 
 export function elasticInOut (k: number) {
@@ -180,14 +182,14 @@ export function elasticInOut (k: number) {
         s = p / 4;
     }
     else {
-        s = p * Math.asin(1 / a) / (2 * Math.PI);
+        s = p * Math.asin(1 / a) / (2 * eMath.PI);
     }
     k *= 2;
     if (k < 1) {
         return -0.5 *
-            (a * Math.pow(2, 10 * (k -= 1)) * Math.sin((k - s) * (2 * Math.PI) / p));
+            (a * Math.pow(2, 10 * (k -= 1)) * Math.sin((k - s) * (2 * eMath.PI) / p));
     }
-    return a * Math.pow(2, -10 * (k -= 1)) * Math.sin((k - s) * (2 * Math.PI) / p) * 0.5 + 1;
+    return a * Math.pow(2, -10 * (k -= 1)) * Math.sin((k - s) * (2 * eMath.PI) / p) * 0.5 + 1;
 }
 
 export function backIn (k: number) {

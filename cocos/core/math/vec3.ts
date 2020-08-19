@@ -33,6 +33,7 @@ import { ValueType } from '../value-types/value-type';
 import { Mat4 } from './mat4';
 import { IMat3Like, IMat4Like, IQuatLike, IVec3Like } from './type-define';
 import { clamp, EPSILON, random } from './utils';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * 三维向量。
@@ -339,7 +340,7 @@ export class Vec3 extends ValueType {
     public static random<Out extends IVec3Like> (out: Out, scale?: number) {
         scale = scale || 1.0;
 
-        const phi = random() * 2.0 * Math.PI;
+        const phi = random() * 2.0 * eMath.PI;
         const cosTheta = random() * 2 - 1;
         const sinTheta = Math.sqrt(1 - cosTheta * cosTheta);
 
@@ -596,7 +597,7 @@ export class Vec3 extends ValueType {
             return 0;
         }
         if (cosine < -1.0) {
-            return Math.PI;
+            return eMath.PI;
         }
         return Math.acos(cosine);
     }

@@ -6,18 +6,18 @@ import { CylinderColliderComponent } from '../../../../exports/physics-framework
 import { EAxisDirection } from '../../framework/physics-enum';
 import { IVec3Like } from '../../../core/math/type-define';
 import { commitShapeUpdates } from '../cannon-util';
-
+import { eMath } from '../cannon-eMath'
 export class CannonCylinderShape extends CannonShape implements ICylinderShape {
 
-    get collider () {
+    get collider() {
         return this._collider as CylinderColliderComponent;
     }
 
-    get impl () {
+    get impl() {
         return this._shape as CANNON.Cylinder;
     }
 
-    setRadius (v: number) {
+    setRadius(v: number) {
         this.updateProperties(
             this.collider.radius,
             this.collider.height,
@@ -29,7 +29,7 @@ export class CannonCylinderShape extends CannonShape implements ICylinderShape {
         if (this._index != -1) commitShapeUpdates(this._body);
     }
 
-    setHeight (v: number) {
+    setHeight(v: number) {
         this.updateProperties(
             this.collider.radius,
             this.collider.height,
@@ -41,7 +41,7 @@ export class CannonCylinderShape extends CannonShape implements ICylinderShape {
         if (this._index != -1) commitShapeUpdates(this._body);
     }
 
-    setDirection (v: number) {
+    setDirection(v: number) {
         this.updateProperties(
             this.collider.radius,
             this.collider.height,
@@ -53,28 +53,28 @@ export class CannonCylinderShape extends CannonShape implements ICylinderShape {
         if (this._index != -1) commitShapeUpdates(this._body);
     }
 
-    constructor (radius = 0.5, height = 2, direction = EAxisDirection.Y_AXIS) {
+    constructor(radius = 0.5, height = 2, direction = EAxisDirection.Y_AXIS) {
         super();
         this._shape = new CANNON.Cylinder(radius, radius, height, 18, direction == EAxisDirection.Y_AXIS);
     }
 
-    onLoad () {
+    onLoad() {
         super.onLoad();
         this.setRadius(this.collider.radius);
     }
 
-    setScale (scale: Vec3): void {
+    setScale(scale: Vec3): void {
         super.setScale(scale);
         this.setRadius(this.collider.radius);
     }
 
-    updateProperties (radius: number, height: number, numSegments: number, direction: number, scale: IVec3Like) {
+    updateProperties(radius: number, height: number, numSegments: number, direction: number, scale: IVec3Like) {
         let wh = height;
         let wr = radius;
-        const cos = Math.cos;
-        const sin = Math.sin;
-        const abs = Math.abs;
-        const max = Math.max;
+        const cos = eMath.cos;
+        const sin = eMath.sin;
+        const abs = eMath.abs;
+        const max = eMath.max;
         if (direction == 1) {
             wh = abs(scale.y) * height;
             wr = max(abs(scale.x), abs(scale.z)) * radius;
@@ -90,7 +90,7 @@ export class CannonCylinderShape extends CannonShape implements ICylinderShape {
         const vertices: CANNON.Vec3[] = [];
         const indices: number[][] = [];
         const axes: CANNON.Vec3[] = [];
-        const theta = Math.PI * 2 / N;
+        const theta = eMath.PI * 2 / N;
         if (direction == 1) {
             const bf = [1];
             const tf = [0];

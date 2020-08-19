@@ -3,6 +3,7 @@
  */
 
 import { Vec3 } from '../math';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * @en
@@ -43,7 +44,7 @@ export default function capsule(radiusTop = 0.5, radiusBottom = 0.5, height = 2,
   const torOffset = radiusBottom - height / 2;
   const bottomOffset = radiusBottom - height / 2;
 
-  const arc = opts.arc || 2.0 * Math.PI;
+  const arc = opts.arc || 2.0 * eMath.PI;
 
   // calculate vertex count
   const positions: number[] = [];
@@ -145,12 +146,12 @@ export default function capsule(radiusTop = 0.5, radiusBottom = 0.5, height = 2,
 
   function generateBottom () {
     for (let lat = 0; lat <= bottomSegments; ++lat) {
-      const theta = lat * Math.PI / bottomSegments / 2;
+      const theta = lat * eMath.PI / bottomSegments / 2;
       const sinTheta = Math.sin(theta);
       const cosTheta = -Math.cos(theta);
 
       for (let lon = 0; lon <= sides; ++lon) {
-        const phi = lon * 2 * Math.PI / sides - Math.PI / 2.0;
+        const phi = lon * 2 * eMath.PI / sides - eMath.PI / 2.0;
         const sinPhi = Math.sin(phi);
         const cosPhi = Math.cos(phi);
 
@@ -182,12 +183,12 @@ export default function capsule(radiusTop = 0.5, radiusBottom = 0.5, height = 2,
 
   function generateTop () {
     for (let lat = 0; lat <= topSegments; ++lat) {
-      const theta = lat * Math.PI / topSegments / 2 + Math.PI / 2;
+      const theta = lat * eMath.PI / topSegments / 2 + eMath.PI / 2;
       const sinTheta = Math.sin(theta);
       const cosTheta = -Math.cos(theta);
 
       for (let lon = 0; lon <= sides; ++lon) {
-        const phi = lon * 2 * Math.PI / sides - Math.PI / 2.0;
+        const phi = lon * 2 * eMath.PI / sides - eMath.PI / 2.0;
         const sinPhi = Math.sin(phi);
         const cosPhi = Math.cos(phi);
 

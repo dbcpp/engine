@@ -3,6 +3,8 @@
  * @category animation
  */
 
+import { eMath } from "../../physics/cannon/cannon-eMath";
+
 export type BezierControlPoints = [ number, number, number, number ];
 
 export function bezier (C1: number, C2: number, C3: number, C4: number, t: number) {
@@ -19,7 +21,7 @@ const cos = Math.cos;
 const acos = Math.acos;
 const max = Math.max;
 // var atan2 = Math.atan2;
-const pi = Math.PI;
+const pi = eMath.PI;
 const tau = 2 * pi;
 const sqrt = Math.sqrt;
 

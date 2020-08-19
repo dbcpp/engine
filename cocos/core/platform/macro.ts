@@ -30,6 +30,7 @@
  */
 
 import { Vec2 } from '../math';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 const SUPPORT_TEXTURE_FORMATS = ['.pkm', '.pvr', '.webp', '.jpg', '.jpeg', '.bmp', '.png'];
 
@@ -841,12 +842,12 @@ const macro = {
     /**
      * PI / 180
      */
-    RAD: Math.PI / 180,
+    RAD: eMath.PI / 180,
 
     /**
      * One degree
      */
-    DEG: 180 / Math.PI,
+    DEG: 180 / eMath.PI,
 
     /**
      * A maximum value of number

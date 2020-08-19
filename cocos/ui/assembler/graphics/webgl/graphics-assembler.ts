@@ -38,11 +38,12 @@ import { GraphicsComponent } from '../../../components';
 import { LineCap, LineJoin, PointFlags } from '../types';
 import { earcut as Earcut } from './earcut';
 import { Impl, Point } from './impl';
+import { eMath } from '../../../../physics/cannon/cannon-eMath';
 
 const MAX_VERTEX = 65535;
 const MAX_INDICE = MAX_VERTEX * 2;
 
-const PI = Math.PI;
+const PI = eMath.PI;
 const min = Math.min;
 const max = Math.max;
 const ceil = Math.ceil;

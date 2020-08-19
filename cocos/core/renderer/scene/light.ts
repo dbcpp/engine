@@ -2,6 +2,7 @@ import { Vec3 } from '../../math';
 import { TransformBit } from '../../scene-graph/node-enum';
 import { RenderScene } from './render-scene';
 import { Node } from '../../scene-graph';
+import { eMath } from '../../../physics/cannon/cannon-eMath';
 
 // Color temperature (in Kelvin) to RGB
 export function ColorTemperatureToRGB (rgb: Vec3, kelvin: number) {
@@ -37,7 +38,7 @@ export enum LightType {
     UNKNOWN,
 }
 
-export const nt2lm = (size: number) => 4 * Math.PI * Math.PI * size * size;
+export const nt2lm = (size: number) => 4 * eMath.PI * eMath.PI * size * size;
 
 export class Light {
 

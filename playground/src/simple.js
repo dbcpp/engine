@@ -104,7 +104,7 @@ cc.director.on(cc.Director.EVENT_BEFORE_UPDATE, () => {
   models.forEach((m, i) => {
     const dt = cc.director._deltaTime;
     const t = cc.director._totalFrames / (60);
-    const rad = i * Math.PI * 8 / len;
+    const rad = i * eMath.PI * 8 / len;
     const x = Math.cos(rad + t), y = Math.sin(rad + t);
     let z = m.position.z + dt; if (z > len * 2) z = 0;
     m.setPosition(x * 2, y * 2, z);

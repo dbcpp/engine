@@ -3,10 +3,11 @@
  */
 
 import { IVec3Like } from "./type-define";
+import { eMath } from "../../physics/cannon/cannon-eMath";
 
-const _d2r = Math.PI / 180.0;
+const _d2r = eMath.PI / 180.0;
 
-const _r2d = 180.0 / Math.PI;
+const _r2d = 180.0 / eMath.PI;
 
 export const EPSILON = 0.000001;
 

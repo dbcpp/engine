@@ -2,6 +2,7 @@ import { aabb, frustum } from '../../geometry';
 import { Mat4, Quat, Vec3 } from '../../math';
 import { Light, LightType, nt2lm } from './light';
 import { RenderScene } from './render-scene';
+import { eMath } from '../../../physics/cannon/cannon-eMath';
 
 const _forward = new Vec3(0, 0, -1);
 const _v3 = new Vec3();
@@ -16,7 +17,7 @@ export class SpotLight extends Light {
     protected _size: number = 0.15;
     protected _range: number = 5.0;
     protected _luminance: number = 1700 / nt2lm(this._size);
-    protected _spotAngle: number = Math.cos(Math.PI / 6);
+    protected _spotAngle: number = Math.cos(eMath.PI / 6);
     protected _pos: Vec3;
     protected _aabb: aabb;
     protected _frustum: frustum;

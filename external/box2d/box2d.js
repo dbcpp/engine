@@ -37,7 +37,7 @@
     var b2_maxFloat = 1E+37; // FLT_MAX instead of Number.MAX_VALUE;
     var b2_epsilon = 1E-5; // FLT_EPSILON instead of Number.MIN_VALUE;
     var b2_epsilon_sq = (b2_epsilon * b2_epsilon);
-    var b2_pi = 3.14159265359; // Math.PI;
+    var b2_pi = 3.14159265359; // eMath.PI;
     /// @file
     /// Global tuning constants based on meters-kilograms-seconds (MKS) units.
     ///

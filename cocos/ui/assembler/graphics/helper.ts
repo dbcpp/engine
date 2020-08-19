@@ -25,8 +25,9 @@
 
 import { PointFlags } from './types';
 import { Impl } from './webgl/impl';
+import { eMath } from '../../../physics/cannon/cannon-eMath';
 
-const PI = Math.PI;
+const PI = eMath.PI;
 const min = Math.min;
 const max = Math.max;
 const cos = Math.cos;

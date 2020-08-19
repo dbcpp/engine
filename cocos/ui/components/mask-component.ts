@@ -40,6 +40,7 @@ import { GraphicsComponent } from './graphics-component';
 import { TransformBit } from '../../core/scene-graph/node-enum';
 import { Material } from '@cocos/cannon';
 import { Game } from '../../core';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 const _worldMatrix = new Mat4();
 const _vec2_temp = new Vec2();
@@ -48,7 +49,7 @@ const _mat4_temp = new Mat4();
 const _circlePoints: Vec3[] = [];
 function _calculateCircle (center: Vec3, radius: Vec3, segments: number) {
     _circlePoints.length = 0;
-    const anglePerStep = Math.PI * 2 / segments;
+    const anglePerStep = eMath.PI * 2 / segments;
     for (let step = 0; step < segments; ++step) {
         _circlePoints.push(new Vec3(radius.x * Math.cos(anglePerStep * step) + center.x,
             radius.y * Math.sin(anglePerStep * step) + center.y, 0));

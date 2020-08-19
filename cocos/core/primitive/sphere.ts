@@ -4,6 +4,7 @@
 
 import { Vec3 } from '../math';
 import { IGeometry, IGeometryOptions } from './define';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * @zh
@@ -36,12 +37,12 @@ export default function sphere (radius = 0.5, opts: RecursivePartial<ISphereOpti
   const boundingRadius = radius;
 
   for (let lat = 0; lat <= segments; ++lat) {
-    const theta = lat * Math.PI / segments;
+    const theta = lat * eMath.PI / segments;
     const sinTheta = Math.sin(theta);
     const cosTheta = -Math.cos(theta);
 
     for (let lon = 0; lon <= segments; ++lon) {
-      const phi = lon * 2 * Math.PI / segments - Math.PI / 2.0;
+      const phi = lon * 2 * eMath.PI / segments - eMath.PI / 2.0;
       const sinPhi = Math.sin(phi);
       const cosPhi = Math.cos(phi);
 

@@ -4,6 +4,7 @@
 
 import { Vec3 } from '../math';
 import { IGeometry, IGeometryOptions } from './define';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * @en
@@ -36,7 +37,7 @@ export default function cylinder (radiusTop = 0.5, radiusBottom = 0.5, height = 
   const radialSegments = opts.radialSegments || 32;
   const heightSegments = opts.heightSegments || 1;
   const capped = opts.capped !== undefined ? opts.capped : true;
-  const arc = opts.arc || 2.0 * Math.PI;
+  const arc = opts.arc || 2.0 * eMath.PI;
 
   let cntCap = 0;
   if (!capped) {

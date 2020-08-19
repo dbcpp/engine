@@ -34,8 +34,9 @@ import { UI } from '../../../core/renderer/ui/ui';
 import { SpriteComponent } from '../../components';
 import { IAssembler } from '../../../core/renderer/ui/base';
 import { fillVertices3D } from '../utils';
+import { eMath } from '../../../physics/cannon/cannon-eMath';
 
-const PI_2 = Math.PI * 2;
+const PI_2 = eMath.PI * 2;
 const EPSILON = 1e-6;
 
 const _vertPos: Vec2[] = [new Vec2(), new Vec2(), new Vec2(), new Vec2()];
@@ -177,14 +178,14 @@ function _getVertAngle (start: Vec2, end: Vec2) {
         return 0;
     } else if (placementX === 0) {
         if (placementY > 0) {
-            return Math.PI * 0.5;
+            return eMath.PI * 0.5;
         } else {
-            return Math.PI * 1.5;
+            return eMath.PI * 1.5;
         }
     } else {
         let angle = Math.atan(placementY / placementX);
         if (placementX < 0) {
-            angle += Math.PI;
+            angle += eMath.PI;
         }
 
         return angle;

@@ -613,12 +613,12 @@ var dragonBones;
          * @private
          */
         Transform.normalizeRadian = function (value) {
-            value = (value + Math.PI) % (Math.PI * 2.0);
-            value += value > 0.0 ? -Math.PI : Math.PI;
+            value = (value + eMath.PI) % (eMath.PI * 2.0);
+            value += value > 0.0 ? -eMath.PI : eMath.PI;
             return value;
         };
         Transform.prototype.toString = function () {
-            return "[object dragonBones.Transform] x:" + this.x + " y:" + this.y + " skewX:" + this.skew * 180.0 / Math.PI + " skewY:" + this.rotation * 180.0 / Math.PI + " scaleX:" + this.scaleX + " scaleY:" + this.scaleY;
+            return "[object dragonBones.Transform] x:" + this.x + " y:" + this.y + " skewX:" + this.skew * 180.0 / eMath.PI + " skewY:" + this.rotation * 180.0 / eMath.PI + " scaleX:" + this.scaleX + " scaleY:" + this.scaleY;
         };
         /**
          * @private
@@ -679,11 +679,11 @@ var dragonBones;
             this.scaleY = (skewX > -PI_Q && skewX < PI_Q) ? matrix.d / Math.cos(skewX) : -matrix.c / Math.sin(skewX);
             if (backupScaleX >= 0.0 && this.scaleX < 0.0) {
                 this.scaleX = -this.scaleX;
-                this.rotation = this.rotation - Math.PI;
+                this.rotation = this.rotation - eMath.PI;
             }
             if (backupScaleY >= 0.0 && this.scaleY < 0.0) {
                 this.scaleY = -this.scaleY;
-                skewX = skewX - Math.PI;
+                skewX = skewX - eMath.PI;
             }
             this.skew = skewX - this.rotation;
             return this;
@@ -723,27 +723,27 @@ var dragonBones;
         /**
          * @private
          */
-        Transform.PI = Math.PI;
+        Transform.PI = eMath.PI;
         /**
          * @private
          */
-        Transform.PI_D = Math.PI * 2.0;
+        Transform.PI_D = eMath.PI * 2.0;
         /**
          * @private
          */
-        Transform.PI_H = Math.PI / 2.0;
+        Transform.PI_H = eMath.PI / 2.0;
         /**
          * @private
          */
-        Transform.PI_Q = Math.PI / 4.0;
+        Transform.PI_Q = eMath.PI / 4.0;
         /**
          * @private
          */
-        Transform.RAD_DEG = 180.0 / Math.PI;
+        Transform.RAD_DEG = 180.0 / eMath.PI;
         /**
          * @private
          */
-        Transform.DEG_RAD = Math.PI / 180.0;
+        Transform.DEG_RAD = eMath.PI / 180.0;
         return Transform;
     }());
     dragonBones.Transform = Transform;
@@ -2394,14 +2394,14 @@ var dragonBones;
                     x = xA + (xB - xA) * (yMin - yA) / (yB - yA);
                     y = yMin;
                     if (normalRadians !== null) {
-                        normalRadian = -Math.PI * 0.5;
+                        normalRadian = -eMath.PI * 0.5;
                     }
                 }
                 else if ((outcodeOut & 8 /* Bottom */) !== 0) {
                     x = xA + (xB - xA) * (yMax - yA) / (yB - yA);
                     y = yMax;
                     if (normalRadians !== null) {
-                        normalRadian = Math.PI * 0.5;
+                        normalRadian = eMath.PI * 0.5;
                     }
                 }
                 else if ((outcodeOut & 2 /* Right */) !== 0) {
@@ -2415,7 +2415,7 @@ var dragonBones;
                     y = yA + (yB - yA) * (xMin - xA) / (xB - xA);
                     x = xMin;
                     if (normalRadians !== null) {
-                        normalRadian = Math.PI;
+                        normalRadian = eMath.PI;
                     }
                 }
                 // Now we move outside point to intersection point to clip
@@ -2449,7 +2449,7 @@ var dragonBones;
                         intersectionPointB.y = xB;
                     }
                     if (normalRadians !== null) {
-                        normalRadians.x = normalRadians.y + Math.PI;
+                        normalRadians.x = normalRadians.y + eMath.PI;
                     }
                 }
                 else if (inSideB) {
@@ -2463,7 +2463,7 @@ var dragonBones;
                         intersectionPointB.y = yA;
                     }
                     if (normalRadians !== null) {
-                        normalRadians.y = normalRadians.x + Math.PI;
+                        normalRadians.y = normalRadians.x + eMath.PI;
                     }
                 }
                 else {
@@ -2581,7 +2581,7 @@ var dragonBones;
                         }
                         if (normalRadians !== null) {
                             normalRadians.x = Math.atan2(yB / rr * dd, xB / rr);
-                            normalRadians.y = normalRadians.x + Math.PI;
+                            normalRadians.y = normalRadians.x + eMath.PI;
                         }
                     }
                     else if (inSideB === 1) {
@@ -2598,7 +2598,7 @@ var dragonBones;
                         }
                         if (normalRadians !== null) {
                             normalRadians.x = Math.atan2(yA / rr * dd, xA / rr);
-                            normalRadians.y = normalRadians.x + Math.PI;
+                            normalRadians.y = normalRadians.x + eMath.PI;
                         }
                     }
                     else {
@@ -2747,7 +2747,7 @@ var dragonBones;
                                 xMax = x;
                                 yMax = y;
                                 if (normalRadians !== null) {
-                                    normalRadians.x = Math.atan2(yD - yC, xD - xC) - Math.PI * 0.5;
+                                    normalRadians.x = Math.atan2(yD - yC, xD - xC) - eMath.PI * 0.5;
                                     normalRadians.y = normalRadians.x;
                                 }
                             }
@@ -2757,7 +2757,7 @@ var dragonBones;
                                     xMin = x;
                                     yMin = y;
                                     if (normalRadians !== null) {
-                                        normalRadians.x = Math.atan2(yD - yC, xD - xC) - Math.PI * 0.5;
+                                        normalRadians.x = Math.atan2(yD - yC, xD - xC) - eMath.PI * 0.5;
                                     }
                                 }
                                 if (d > dMax) {
@@ -2765,7 +2765,7 @@ var dragonBones;
                                     xMax = x;
                                     yMax = y;
                                     if (normalRadians !== null) {
-                                        normalRadians.y = Math.atan2(yD - yC, xD - xC) - Math.PI * 0.5;
+                                        normalRadians.y = Math.atan2(yD - yC, xD - xC) - eMath.PI * 0.5;
                                     }
                                 }
                             }
@@ -2778,7 +2778,7 @@ var dragonBones;
                             yMax = y;
                             intersectionCount++;
                             if (normalRadians !== null) {
-                                normalRadians.x = Math.atan2(yD - yC, xD - xC) - Math.PI * 0.5;
+                                normalRadians.x = Math.atan2(yD - yC, xD - xC) - eMath.PI * 0.5;
                                 normalRadians.y = normalRadians.x;
                             }
                             break;
@@ -2798,7 +2798,7 @@ var dragonBones;
                     intersectionPointB.y = yMin;
                 }
                 if (normalRadians !== null) {
-                    normalRadians.y = normalRadians.x + Math.PI;
+                    normalRadians.y = normalRadians.x + eMath.PI;
                 }
             }
             else if (intersectionCount > 1) {
@@ -4826,10 +4826,10 @@ var dragonBones;
                     if (!boneData.inheritRotation) {
                         parent.updateGlobalTransform();
                         if (flipX && flipY) {
-                            rotation = global.rotation - (parent.global.rotation + Math.PI);
+                            rotation = global.rotation - (parent.global.rotation + eMath.PI);
                         }
                         else if (flipX) {
-                            rotation = global.rotation + parent.global.rotation + Math.PI;
+                            rotation = global.rotation + parent.global.rotation + eMath.PI;
                         }
                         else if (flipY) {
                             rotation = global.rotation + parent.global.rotation;
@@ -4874,7 +4874,7 @@ var dragonBones;
                     if (boneData.inheritRotation) {
                         parent.updateGlobalTransform();
                         if (parent.global.scaleX < 0.0) {
-                            rotation = global.rotation + parent.global.rotation + Math.PI;
+                            rotation = global.rotation + parent.global.rotation + eMath.PI;
                         }
                         else {
                             rotation = global.rotation + parent.global.rotation;
@@ -4882,23 +4882,23 @@ var dragonBones;
                         if (parentMatrix.a * parentMatrix.d - parentMatrix.b * parentMatrix.c < 0.0) {
                             rotation -= global.rotation * 2.0;
                             if (flipX !== flipY || boneData.inheritReflection) {
-                                global.skew += Math.PI;
+                                global.skew += eMath.PI;
                             }
                         }
                         global.rotation = rotation;
                     }
                     else if (flipX || flipY) {
                         if (flipX && flipY) {
-                            rotation = global.rotation + Math.PI;
+                            rotation = global.rotation + eMath.PI;
                         }
                         else {
                             if (flipX) {
-                                rotation = Math.PI - global.rotation;
+                                rotation = eMath.PI - global.rotation;
                             }
                             else {
                                 rotation = -global.rotation;
                             }
-                            global.skew += Math.PI;
+                            global.skew += eMath.PI;
                         }
                         global.rotation = rotation;
                     }
@@ -4914,16 +4914,16 @@ var dragonBones;
                         global.y = -global.y;
                     }
                     if (flipX && flipY) {
-                        rotation = global.rotation + Math.PI;
+                        rotation = global.rotation + eMath.PI;
                     }
                     else {
                         if (flipX) {
-                            rotation = Math.PI - global.rotation;
+                            rotation = eMath.PI - global.rotation;
                         }
                         else {
                             rotation = -global.rotation;
                         }
-                        global.skew += Math.PI;
+                        global.skew += eMath.PI;
                     }
                     global.rotation = rotation;
                 }
@@ -5331,9 +5331,9 @@ var dragonBones;
             var dacX = cX - aX;
             var dacY = cY - aY;
             transform.rotation = Math.atan2(dabY, dabX);
-            transform.skew = Math.atan2(dacY, dacX) - Math.PI * 0.5 - transform.rotation;
+            transform.skew = Math.atan2(dacY, dacX) - eMath.PI * 0.5 - transform.rotation;
             if (isDown) {
-                transform.rotation += Math.PI;
+                transform.rotation += eMath.PI;
             }
             transform.scaleX = Math.sqrt(dabX * dabX + dabY * dabY) / lX;
             transform.scaleY = Math.sqrt(dacX * dacX + dacY * dacY) / lY;
@@ -6931,7 +6931,7 @@ var dragonBones;
             var globalTransformMatrix = this._root.globalTransformMatrix;
             var radian = Math.atan2(ikGlobal.y - global.y, ikGlobal.x - global.x);
             if (global.scaleX < 0.0) {
-                radian += Math.PI;
+                radian += eMath.PI;
             }
             global.rotation += (radian - global.rotation) * this._weight;
             global.toMatrix(globalTransformMatrix);
@@ -6964,7 +6964,7 @@ var dragonBones;
                 if (lL + lP <= lT) {
                 }
                 else if (lP < lL) {
-                    radianA += Math.PI;
+                    radianA += eMath.PI;
                 }
             }
             else {
@@ -6999,7 +6999,7 @@ var dragonBones;
             //
             var radianB = Math.atan2(ikGlobal.y - global.y, ikGlobal.x - global.x);
             if (global.scaleX < 0.0) {
-                radianB += Math.PI;
+                radianB += eMath.PI;
             }
             global.rotation = parentGlobal.rotation + rawRadian - rawParentRadian + dragonBones.Transform.normalizeRadian(radianB - dR - rawRadian) * this._weight;
             global.toMatrix(globalTransformMatrix);
@@ -9590,7 +9590,7 @@ var dragonBones;
                     value = 1.0 - Math.pow(1.0 - progress, 2.0);
                     break;
                 case 5 /* QuadInOut */:
-                    value = 0.5 * (1.0 - Math.cos(progress * Math.PI));
+                    value = 0.5 * (1.0 - Math.cos(progress * eMath.PI));
                     break;
             }
             return (value - progress) * easing + progress;

@@ -4,6 +4,7 @@
 
 import { Vec3 } from '../math';
 import { IGeometryOptions } from './define';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 /**
  * @zh
@@ -27,7 +28,7 @@ interface ITorusOptions extends IGeometryOptions {
 export default function torus (radius = 0.4, tube = 0.1, opts: RecursivePartial<ITorusOptions> = {}) {
   const radialSegments = opts.radialSegments || 32;
   const tubularSegments = opts.tubularSegments || 32;
-  const arc = opts.arc || 2.0 * Math.PI;
+  const arc = opts.arc || 2.0 * eMath.PI;
 
   const positions: number[] = [];
   const normals: number[] = [];
@@ -43,7 +44,7 @@ export default function torus (radius = 0.4, tube = 0.1, opts: RecursivePartial<
       const v = j / radialSegments;
 
       const u1 = u * arc;
-      const v1 = v * Math.PI * 2;
+      const v1 = v * eMath.PI * 2;
 
       // vertex
       const x = (radius + tube * Math.cos(v1)) * Math.sin(u1);

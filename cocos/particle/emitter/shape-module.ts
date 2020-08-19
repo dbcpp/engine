@@ -11,6 +11,7 @@ import { ArcMode, EmitLocation, ShapeType } from '../enum';
 import { fixedAngleUnitVector2, particleEmitZAxis, randomPointBetweenCircleAtFixedAngle, randomPointBetweenSphere,
     randomPointInCube, randomSign, randomSortArray, randomUnitVector } from '../particle-general-function';
 import { ParticleSystemComponent } from '../particle-system-component';
+import { eMath } from '../../physics/cannon/cannon-eMath';
 
 const _intermediVec = new Vec3(0, 0, 0);
 const _intermediArr = new Array();
@@ -344,7 +345,7 @@ export default class ShapeModule {
         if (this.arcMode === ArcMode.Random) {
             return randomRange(0, this._arc);
         }
-        let angle = this.totalAngle + 2 * Math.PI * this.arcSpeed.evaluate(this.particleSystem!._time, 1)! * (this.particleSystem!._time - this.lastTime);
+        let angle = this.totalAngle + 2 * eMath.PI * this.arcSpeed.evaluate(this.particleSystem!._time, 1)! * (this.particleSystem!._time - this.lastTime);
         this.totalAngle = angle;
         if (this.arcSpread !== 0) {
             angle = Math.floor(angle / (this._arc * this.arcSpread)) * this._arc * this.arcSpread;
